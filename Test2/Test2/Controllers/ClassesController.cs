@@ -20,11 +20,47 @@ namespace Test2.Controllers
         }
 
         // GET: Classes
-        public async Task<IActionResult> Index()
+        //GET通信をした際indexの処理
+        //IndexはデフォルトなのでClassesまで呼び出せばこのメソッドが起動する
+        public async Task<IActionResult> Index(string user, string searchString)
         {
-              return _context.Class != null ? 
-                          View(await _context.Class.ToListAsync()) :
-                          Problem("Entity set 'Test2Context.Class'  is null.");
+            if (_context.Class == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+
+            // Use LINQ to get list of genres.
+            IQueryable<string> nameQuery = from m in _context.Class
+                                            orderby m.Name
+                                            select m.Name;
+
+            var classes = from m in _context.Class
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                classes = classes.Where(s => s.Name!.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(user))
+            {
+                classes = classes.Where(x => x.Name == user);
+            }
+
+            var testClassesGenre = new TestClassesGenre
+            {
+                Users = new SelectList(await nameQuery.Distinct().ToListAsync()),
+                Classes = await classes.ToListAsync()
+            };
+
+            return View(testClassesGenre);
+        }
+
+        //post送信した際のindexの処理
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
         }
 
         // GET: Classes/Details/5

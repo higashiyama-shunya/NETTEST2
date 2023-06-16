@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Test2.Models;
 using Test2.Data;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<Test2Context>(options =>
@@ -9,6 +10,13 @@ builder.Services.AddDbContext<Test2Context>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
