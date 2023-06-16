@@ -23,13 +23,15 @@ public static class SeedData
             context.Class.AddRange(
                 new Class
                 {
-                    Name = "佐藤",
-                    Time = 88
+                    Name = "かずき",
+                    Time = 88,
+                    SurName="佐藤"
                 },
                 new Class
                 {
-                    Name = "森",
-                    Time = 9934
+                    Name = "くぼのぶ",
+                    Time = 9934,
+                    SurName="森"
                 }
             );
             context.SaveChanges();
