@@ -251,3 +251,5 @@ C:\Users\higashiyama.shunya\NETTEST2\Test2\Test2\obj\Debug\net7.0\refint\Test2.d
 C:\Users\higashiyama.shunya\NETTEST2\Test2\Test2\obj\Debug\net7.0\Test2.pdb
 C:\Users\higashiyama.shunya\NETTEST2\Test2\Test2\obj\Debug\net7.0\Test2.genruntimeconfig.cache
 C:\Users\higashiyama.shunya\NETTEST2\Test2\Test2\obj\Debug\net7.0\ref\Test2.dll
+C:\Users\higashiyama.shunya\NETTEST2\Test2\Test2\bin\Debug\net7.0\MySqlConnector.dll
+C:\Users\higashiyama.shunya\NETTEST2\Test2\Test2\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll

@@ -1,10 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Pomelo.EntityFrameworkCore.MySql;
 using Test2.Models;
 using Test2.Data;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<Test2Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Test2Context") ?? throw new InvalidOperationException("Connection string 'Test2Context' not found.")));
+    options.UseMySql(builder.Configuration.GetConnectionString("Test2Context"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("Test2Context"))));
+
+//builder.Services.AddDbContext<Test2Context>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("Test2Context") ?? throw new InvalidOperationException("Connection string 'Test2Context' not found.")));
+
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
